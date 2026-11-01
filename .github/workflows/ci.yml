@@ -1,0 +1,28 @@
+
+name: Web Application CI
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify homepage exists
+        run: test -f index.html
+
+      - name: Verify contact page exists
+        run: test -f contact.html
+
+      - name: Display validation result
+        run: echo "Web application validation passed"
